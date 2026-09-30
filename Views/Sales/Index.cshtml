@@ -1,0 +1,69 @@
+﻿@model IEnumerable<KirtasiyeProjesi.Models.Sale>
+
+@{
+    ViewData["Title"] = "Satışlar";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="bi bi-currency-dollar text-success"></i> Satış Yönetimi</h1>
+        <a asp-action="Create" class="btn btn-success shadow">
+            <i class="bi bi-plus-lg"></i> Yeni Satış Ekle
+        </a>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover table-striped mb-0 align-middle">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4">Ürün Adı</th>
+                        <th>Satış Tarihi</th>
+                        <th>Satılan Adet</th>
+                        <th>Toplam Tutar</th>
+                        <th class="text-end pe-4">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-bold text-dark">
+                                <i class="bi bi-box-seam me-2 text-secondary"></i>
+                                @if (item.Product != null)
+                                {
+                                    @item.Product.Name
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Ürün Silinmiş</span>
+                                }
+                            </td>
+                            <td>
+                                <i class="bi bi-calendar-event me-1 text-muted"></i>
+                                @item.Date.ToString("dd.MM.yyyy HH:mm")
+                            </td>
+                            <td>
+                                <span class="badge bg-secondary rounded-pill">@item.Quantity Adet</span>
+                            </td>
+                            <td class="fw-bold text-success">
+                                @item.TotalPrice ₺
+                            </td>
+                            <td class="text-end pe-4">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning text-dark me-1" title="Düzenle">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white me-1" title="Detay">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Sil">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div></div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<KirtasiyeProjesi.Models.Product>
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<style>
+    /* KitapAdam Konsept Arka Plan */
+    body {
+        background-color: #fffbf0; /* Çok açık krem rengi */
+        background-image: radial-gradient(#ffeaa7 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    /* TURUNCU GRADYAN HERO ALANI */
+    .hero-card {
+        background: linear-gradient(135deg, #ff9f1a 0%, #d35400 100%);
+        color: white;
+        border-radius: 20px;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(211, 84, 0, 0.4);
+    }
+</style>
+
+<div class="hero-card mb-5 text-center">
+    <i class="bi bi-book-half position-absolute text-white" style="right: -20px; bottom: -20px; font-size: 10rem; opacity:0.2; transform: rotate(-15deg);"></i>
+
+    <h1 class="display-3 fw-bold">KitapAdam'a Hoş Geldiniz</h1>
+    <p class="lead fs-4">Aradığınız kitap, kırtasiye ve ofis malzemeleri kapınızda.</p>
+
+    <div class="mt-4">
+        <a asp-controller="Products" asp-action="Index" class="btn btn-light text-dark fw-bold px-5 py-3 rounded-pill shadow-sm">
+            <i class="bi bi-search me-2"></i>Ürünleri Keşfet
+        </a>
+    </div>
+</div>
+
+<h4 class="fw-bold mb-3" style="color: #2d3436;">
+    <i class="bi bi-stars text-warning"></i> İlginizi Çekebilecek Ürünler
+</h4>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="~/img/@item.ImageUrl" class="mb-3 rounded" style="width: 100px; height: 100px; object-fit: cover;">
+                    }
+                    else
+                    {
+                        <div class="bg-light rounded d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
+                            <i class="bi bi-image text-muted fs-2"></i>
+                        </div>
+                    }
+                    <h6 class="fw-bold text-dark text-truncate">@item.Name</h6>
+                    <span class="badge bg-warning text-dark">@item.Price ₺</span>
+                </div>
+            </div>
+        </div>
+    }
+</div>

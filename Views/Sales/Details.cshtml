@@ -1,0 +1,66 @@
+﻿@model KirtasiyeProjesi.Models.Sale
+
+@{
+    ViewData["Title"] = "Satış Detayı";
+}
+
+<div class="container mt-5">
+    <h1><i class="bi bi-receipt text-success"></i> Satış Detayı</h1>
+    <hr />
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Fiş No: #@Model.Id</h5>
+        </div>
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col-md-6 border-end">
+                    <h5 class="text-muted mb-3">Ürün Bilgileri</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Ürün Adı:</dt>
+                        <dd class="col-sm-8 fw-bold">
+                            @if (Model.Product != null)
+                            {
+                                @Model.Product.Name
+                            }
+                            else
+                            {
+
+                                <span class="text-danger">Silinmiş Ürün</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6 ps-md-4">
+                    <h5 class="text-muted mb-3">İşlem Detayları</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Tarih:</dt>
+                        <dd class="col-sm-8">
+                            <i class="bi bi-calendar3"></i> @Model.Date.ToString("dd.MM.yyyy HH:mm")
+                        </dd>
+
+                        <dt class="col-sm-4">Adet:</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge bg-secondary">@Model.Quantity Adet</span>
+                        </dd>
+
+                        <dt class="col-sm-4 mt-2">Toplam Tutar:</dt>
+                        <dd class="col-sm-8 mt-2">
+                            <span class="fs-4 fw-bold text-success">@Model.TotalPrice ₺</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-light p-3">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning shadow-sm me-2">
+                <i class="bi bi-pencil-square"></i> Düzenle
+            </a>
+            <a asp-action="Index" class="btn btn-secondary shadow-sm">
+                <i class="bi bi-arrow-left"></i> Listeye Dön
+            </a>
+        </div>
+    </div>
+</div>

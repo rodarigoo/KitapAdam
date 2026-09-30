@@ -1,0 +1,22 @@
+﻿@model KirtasiyeProjesi.Models.Brand
+@{
+    ViewData["Title"] = "Marka Düzenle";
+}
+
+<div class="container mt-5">
+    <h1>Markayı Düzenle</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group mb-3">
+                    <label asp-for="Name" class="control-label fw-bold">Marka Adı</label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+                <a asp-action="Index" class="btn btn-secondary">İptal</a>
+            </form>
+        </div>
+    </div>
+</div>

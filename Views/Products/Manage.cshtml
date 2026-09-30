@@ -1,0 +1,48 @@
+﻿@model IEnumerable<KirtasiyeProjesi.Models.Product>
+
+@{
+    ViewData["Title"] = "Ürün Yönetimi";
+}
+
+<div class="container mt-4">
+    <h1>Ürün Yönetim Paneli</h1>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Yeni Ürün Ekle</a>
+    </p>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Resim</th>
+                <th>Ürün Adı</th>
+                <th>Fiyat</th>
+                <th>Stok</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="~/img/@item.ImageUrl" width="50" />
+                        }
+                        else
+                        {
+                            <span>Yok</span>
+                        }
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@item.Price ₺</td>
+                    <td>@item.Stock</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

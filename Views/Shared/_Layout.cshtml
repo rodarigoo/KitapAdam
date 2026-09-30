@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KitapAdam - Kırtasiye Dünyası</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        /* ÖZEL TURUNCU TEMA AYARLARI */
+        :root {
+            --ana-turuncu: #ff9f1a; /* Logodaki Turuncu */
+            --ana-siyah: #2d3436; /* Logodaki Siyah */
+        }
+
+        /* Linklerin Rengi */
+        .nav-link {
+            color: var(--ana-siyah) !important;
+            transition: 0.3s;
+        }
+
+            .nav-link:hover {
+                color: var(--ana-turuncu) !important;
+            }
+
+            .nav-link.active {
+                color: var(--ana-turuncu) !important;
+                font-weight: bold;
+            }
+
+        /* Butonlar */
+        .btn-primary {
+            background-color: var(--ana-turuncu);
+            border-color: var(--ana-turuncu);
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background-color: #e67e22;
+                border-color: #e67e22;
+            }
+
+        .btn-outline-primary {
+            color: var(--ana-turuncu);
+            border-color: var(--ana-turuncu);
+        }
+
+            .btn-outline-primary:hover {
+                background-color: var(--ana-turuncu);
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 py-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/logo.jpg" alt="KitapAdam" style="height: 80px; object-fit: contain;">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a class="nav-link fs-5 fw-bold" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door"></i> Ana Sayfa
+                            </a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a class="nav-link fs-5 fw-bold" asp-controller="Products" asp-action="Index">
+                                <i class="bi bi-bag"></i> Ürünler
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown px-2">
+                            <a class="nav-link dropdown-toggle fs-5 fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-gear"></i> Yönetim
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Categories" asp-action="Index">Kategoriler</a></li>
+                                <li><a class="dropdown-item" asp-controller="Brands" asp-action="Index">Markalar</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-controller="Sales" asp-action="Index">Satışlar</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item fw-bold text-primary" asp-controller="Products" asp-action="Manage">
+                                        <i class="bi bi-box-seam"></i> Ürün Yönetimi
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-5 py-4 bg-light">
+        <div class="container text-center">
+            &copy; 2026 - <strong>KitapAdam</strong> - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-warning">Gizlilik</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

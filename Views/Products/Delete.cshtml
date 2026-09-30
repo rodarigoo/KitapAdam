@@ -1,0 +1,41 @@
+﻿@model KirtasiyeProjesi.Models.Product
+
+@{
+    ViewData["Title"] = "Ürünü Sil";
+}
+
+<div class="container mt-5">
+    <h1 class="text-danger"><i class="bi bi-trash-fill"></i> Ürünü Sil</h1>
+    <h3 class="fs-5 text-muted">Bu ürünü silmek istediğinize emin misiniz?</h3>
+    <hr />
+
+    <div class="card shadow-sm border-danger border-start border-5">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img src="~/img/@Model.ImageUrl" class="img-fluid rounded border" style="max-height:150px;" />
+                    }
+                </div>
+                <div class="col-md-10">
+                    <h4 class="fw-bold">@Model.Name</h4>
+                    <p>Fiyat: <span class="badge bg-success fs-6">@Model.Price ₺</span></p>
+                    <p>Stok: @Model.Stock</p>
+                    <p>Marka: @Model.Brand?.Name | Kategori: @Model.Category?.Name</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-white border-0 pb-3 pt-0">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger shadow-sm">
+                    <i class="bi bi-trash"></i> Evet, Sil
+                </button>
+                <a asp-action="Manage" class="btn btn-secondary shadow-sm ms-2">
+                    <i class="bi bi-arrow-left"></i> Vazgeç
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

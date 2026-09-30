@@ -1,0 +1,31 @@
+﻿@model KirtasiyeProjesi.Models.Brand
+
+@{
+    ViewData["Title"] = "Marka Detayı";
+}
+
+<div class="container mt-5">
+    <h1>Marka Detayı</h1>
+    <hr />
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-2 fw-bold text-primary">
+                    <i class="bi bi-tag-fill"></i> Marka Adı:
+                </dt>
+                <dd class="col-sm-10 fs-5">
+                    @Model.Name
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning shadow-sm">
+            <i class="bi bi-pencil"></i> Düzenle
+        </a>
+        <a asp-action="Index" class="btn btn-secondary shadow-sm">
+            <i class="bi bi-arrow-left"></i> Listeye Dön
+        </a>
+    </div>
+</div>

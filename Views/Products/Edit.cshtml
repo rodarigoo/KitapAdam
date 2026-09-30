@@ -1,0 +1,74 @@
+﻿@model KirtasiyeProjesi.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "Ürün Düzenle";
+}
+
+<div class="container mt-5">
+    <h1><i class="bi bi-pencil-square text-warning"></i> Ürünü Düzenle</h1>
+    <hr />
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Product.Id" />
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Product.Name" class="control-label fw-bold">Ürün Adı</label>
+                            <input asp-for="Product.Name" class="form-control" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group mb-3">
+                                <label asp-for="Product.Price" class="control-label fw-bold">Fiyat</label>
+                                <input asp-for="Product.Price" class="form-control" />
+                            </div>
+                            <div class="col-md-6 form-group mb-3">
+                                <label asp-for="Product.Stock" class="control-label fw-bold">Stok</label>
+                                <input asp-for="Product.Stock" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="control-label fw-bold">Mevcut Resim</label><br />
+                            @if (!string.IsNullOrEmpty(Model.Product.ImageUrl))
+                            {
+                                <img src="~/img/@Model.Product.ImageUrl" width="100" class="border rounded" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">Resim Yok</span>
+                            }
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="ImageFile" class="control-label fw-bold">Yeni Resim (Opsiyonel)</label>
+                            <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Product.CategoryId" class="control-label fw-bold">Kategori</label>
+                            <select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Product.BrandId" class="control-label fw-bold">Marka</label>
+                            <select asp-for="Product.BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-warning shadow-sm">
+                                <i class="bi bi-save"></i> Güncelle
+                            </button>
+                            <a asp-action="Manage" class="btn btn-secondary shadow-sm">
+                                <i class="bi bi-arrow-left"></i> Vazgeç
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

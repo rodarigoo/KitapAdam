@@ -1,0 +1,87 @@
+﻿@model IEnumerable<KirtasiyeProjesi.Models.Product>
+
+@{
+    ViewData["Title"] = "Ürün Vitrini";
+}
+
+<style>
+    /* Arka Plan */
+    body {
+        background-color: #fdfdfd;
+        background-image: linear-gradient(#e5e5e5 1px, transparent 1px), linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+        background-size: 30px 30px;
+    }
+
+    /* Kart Tasarımı */
+    .product-card {
+        border: none;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        background: white;
+        overflow: hidden;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+            border-bottom: 3px solid #ff9f1a;
+        }
+
+    /* Başlık */
+    .header-gradient {
+        background: linear-gradient(135deg, #f39c12 0%, #d35400 100%);
+        color: white;
+        border-radius: 20px;
+    }
+
+    .price-tag {
+        background: #2d3436;
+        color: #fff;
+        font-weight: 800;
+        border-radius: 10px 0 0 10px;
+    }
+</style>
+
+<div class="container py-4">
+    <div class="header-gradient p-5 mb-5 shadow text-center position-relative overflow-hidden">
+        <h1 class="display-4 fw-bold mb-2">KitapAdam Vitrini</h1>
+        <p class="lead mb-0">En seçkin kitap ve kırtasiye ürünlerini inceleyin.</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm">
+                    <div class="position-relative" style="height: 240px; background-color: #f8f9fa;">
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="~/img/@item.ImageUrl" style="width: 100%; height: 100%; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="d-flex justify-content-center align-items-center h-100 text-muted">
+                                <i class="bi bi-journal-album" style="font-size: 4rem; opacity: 0.5;"></i>
+                            </div>
+                        }
+                        <div class="position-absolute top-0 end-0 mt-3 px-3 py-2 price-tag">@item.Price ₺</div>
+                    </div>
+
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-2">
+                            <span class="badge bg-light text-secondary border">@item.Category?.Name</span>
+                            <span class="badge bg-warning text-dark">@item.Brand?.Name</span>
+                        </div>
+                        <h5 class="card-title fw-bold text-dark">@item.Name</h5>
+
+                        <div class="mt-3 small">
+                            <span class="@(item.Stock > 0 ? "text-success" : "text-danger") fw-bold">
+                                @(item.Stock > 0 ? "Stokta Var" : "Tükendi")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
